@@ -3,7 +3,7 @@ require 'gilded_rose'
 describe GildedRose do
 
   describe "#update_quality" do
-    describe "normal items" do
+    describe "Normal items" do
       it "reduces the quality by 1 " do
         items = [Item.new("Item", 5, 5)]
         GildedRose.new(items).update_quality()
@@ -40,6 +40,14 @@ describe GildedRose do
         items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 0,15)]
         GildedRose.new(items).update_quality()
         expect(items[0].quality).to eq 0
+      end
+    end
+
+    describe "Aged Brie" do
+      it "quality increases the older it gets" do
+        items = [Item.new("Aged Brie",10,10)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq 11
       end
     end
   end
