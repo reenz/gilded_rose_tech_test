@@ -24,6 +24,12 @@ describe GildedRose do
     end
 
     describe "Backstage passes" do
+      it "value increases by 1 if sellIn is > 10" do
+        items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 15,8)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq 9
+      end
+
       it "value increases by 2 if sellIn is <= 10" do
         items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 10,8)]
         GildedRose.new(items).update_quality()
@@ -48,6 +54,17 @@ describe GildedRose do
         items = [Item.new("Aged Brie",10,10)]
         GildedRose.new(items).update_quality()
         expect(items[0].quality).to eq 11
+      end
+    end
+
+    describe "Sulfuras, Hand of Ragnaros" do
+      it "quality is 80 and it never alters" do
+        items = [Item.new("Sulfuras, Hand of Ragnaros",1,80)]
+        items_2 = [Item.new("Sulfuras, Hand of Ragnaros",0,80)]
+        GildedRose.new(items).update_quality()
+        GildedRose.new(items_2).update_quality()
+        expect(items[0].quality).to eq 80
+        expect(items_2[0].quality).to eq 80
       end
     end
   end
