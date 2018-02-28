@@ -51,20 +51,19 @@ describe GildedRose do
 
     describe "Aged Brie" do
       it "quality increases the older it gets" do
-        items = [Item.new("Aged Brie",10,10)]
+        items = [Item.new("Aged Brie",10,10),Item.new("Aged Brie",10,11)]
         GildedRose.new(items).update_quality()
         expect(items[0].quality).to eq 11
+        expect(items[1].quality).to eq 12
       end
     end
 
     describe "Sulfuras, Hand of Ragnaros" do
       it "quality is 80 and it never alters" do
-        items = [Item.new("Sulfuras, Hand of Ragnaros",1,80)]
-        items_2 = [Item.new("Sulfuras, Hand of Ragnaros",0,80)]
+        items = [Item.new("Sulfuras, Hand of Ragnaros",1,80), Item.new("Sulfuras, Hand of Ragnaros",0,80)]
         GildedRose.new(items).update_quality()
-        GildedRose.new(items_2).update_quality()
         expect(items[0].quality).to eq 80
-        expect(items_2[0].quality).to eq 80
+        expect(items[1].quality).to eq 80
       end
     end
   end
