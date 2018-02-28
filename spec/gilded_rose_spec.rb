@@ -24,10 +24,22 @@ describe GildedRose do
     end
 
     describe "Backstage passes" do
-      it "value increases by 2 times if sellIn is <= 10" do
+      it "value increases by 2 if sellIn is <= 10" do
         items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 10,8)]
         GildedRose.new(items).update_quality()
         expect(items[0].quality).to eq 10
+      end
+
+      it "value increases by 3 if sellIn is <= 5" do
+        items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 5,20)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq 23
+      end
+
+      it "value becomes 0 if sellIn is 0" do
+        items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 0,15)]
+        GildedRose.new(items).update_quality()
+        expect(items[0].quality).to eq 0
       end
     end
   end
